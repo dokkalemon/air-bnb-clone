@@ -1,0 +1,33 @@
+/* Import Variables */
+@import '@/styles/var.scss';
+
+/* Reset */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Global */
+body {
+    background-color: $background-color;
+    font-family: $font-primary;
+}
+
+.full-size {
+    width: 100%;
+}
+
+.container {
+    width: 1640px;
+    margin: 0 auto;
+}
+
+.px-20 {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.debug {
+    border: 1px solid red;
+}
