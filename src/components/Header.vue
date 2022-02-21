@@ -1,5 +1,5 @@
 <template>
-    <header class="full-size">
+    <header class="full-width">
         <div class="header container px-20">
             <div class="header-logo">
                 <img src="@/assets/Logo.svg" alt="">
@@ -73,7 +73,7 @@ header {
                 height: 100%;
                 filter: brightness(500%)
             }
-        }
+        } 
         .header-menu {
             height: 100%;
             ul {
