@@ -1,51 +1,77 @@
 <template>
-    <section class="booking full-width">
+    <section class="booking full-width" :class="{active: scrolling > 5}">
         <div class="booking-container container px-20">
             <div class="booking-input">
-                <div class="input-cont place">
+
+
+                <Place :openPlace="openPlaceProp"/>
+
+        
+                <button class="input-cont place" @click="openPlaceFunction" @blur="(openPlaceProp = false, openSearch = false)" v-show="scrolling < 5">
                     <span>Dove</span>
                     <p>Dove vuoi andare?</p>
-                </div>
-                <div class="line"></div>
-                <div class="input-cont guests">
+                </button>
+                <div class="line" v-show="scrolling < 5"></div>
+                <div class="input-cont guests" v-show="scrolling < 5">
                     <span>Check-in</span>
                     <p>Aggiungi date</p>
                 </div>
-                <div class="line"></div>
-                <div class="input-cont guests">
+                <div class="line" v-show="scrolling < 5"></div>
+                <div class="input-cont guests" v-show="scrolling < 5">
                     <span>Check-out</span>
                     <p>Aggiungi date</p>
                 </div>
-                <div class="line"></div>
-                <div class="input-cont guests">
+                <div class="line" v-show="scrolling < 5"></div>
+                <div class="input-cont guests" v-show="scrolling < 5">
                     <span>Ospiti</span>
                     <p>Aggiungi Ospiti</p>
                 </div>
-                <div class="button">
-                    <i class="fa-solid fa-magnifying-glass"></i>
+                <div class="scroll-controll" v-show="scrolling > 5" >
+                    <span>Inizia la ricerca</span>
                 </div>
-
-
-
+                <div class="button" :class="{active: openSearch}">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span v-show="openSearch">Cerca</span>
+                </div>
 
             </div>
         </div>
+        
     </section>
 </template>
 
 <script>
 /* import Datepicker from 'vue3-date-time-picker';
 import 'vue3-date-time-picker/dist/main.css' */
+import Place from '@/components/Place';
 
 
 export default {
     name: 'TheBooking',
     components: {
         /* Datepicker, */
+        Place,
+    },
+    props: {
+        scrolling: Number,
     },
     data() {
         return {
             date: null,
+            openPlaceProp: false,
+            openSearch: false,
+        }
+    },
+
+    methods: {
+        openPlaceFunction() {
+            if (this.openPlaceProp === false) {
+                this.openPlaceProp = true;
+                this.openSearch = true
+            } else {
+                this.openPlaceProp = false
+                this.openSearch = false
+            }
         }
     }
 }
@@ -57,9 +83,11 @@ export default {
 
 
 .booking {
-    background-color: black;
-    position: fixed;
-    margin-top: 70px;
+    
+    position: absolute;
+    transition: all 0.3s ease;
+    top: 70px;
+    transition: top 0.3s ease;
     .booking-container {
         height: 85px;
         display: flex;
@@ -68,11 +96,12 @@ export default {
         .booking-input {
             height: 65px;
             background-color: white;
-            width: 57%;
+            width: 850px;
             border-radius: 100px;
             display: flex;
             align-items: center;
-            position: relative;
+            border: 1px solid red;
+            transition: all 0.3s ease;
             .input-cont {
                 height: 100%;
                 width:23.3333%;
@@ -83,6 +112,9 @@ export default {
                 justify-content: center;
                 cursor: pointer;
                 position: relative;
+                border: none;
+                background-color: transparent;
+                text-align: left;
                 
                 span {
                     font-size: 12px;
@@ -110,7 +142,7 @@ export default {
             .button {
                 height: 75%;
                 width: 52px;
-                background-color: $primary-color;
+                background-image: linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%);
                 border-radius: 100px;
                 display: flex;
                 align-items: center;
@@ -124,6 +156,37 @@ export default {
             &:hover {
                 background-color: #dc0e63;
             }
+            }
+            .button.active {
+                width: 120px;
+                span {
+                    color: white;
+                    font-size: 16px;
+                    margin-left: 10px;
+                }
+            }
+            .scroll-controll {
+                width: 85%;
+                padding: 20px 20px;
+                transition: all 0.3s ease;
+                span {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
+.booking.active {
+    background-color: transparent;
+    position: fixed;
+    top: 0px;
+    .booking-container {
+        .booking-input {
+            height: 48px;
+            width: 300px;
+            .button {
+                height: 75%;
+                width: 35px;
             }
         }
     }

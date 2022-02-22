@@ -1,5 +1,5 @@
 <template>
-    <header class="full-width">
+    <header class="full-width" :class="{active: scrolling > 5}">
         <div class="header container px-20">
             <div class="header-logo">
                 <img src="@/assets/Logo.svg" alt="">
@@ -50,7 +50,11 @@
 
 <script>
 export default {
-    name: 'TheHeader'
+    name: 'TheHeader',
+
+    props: {
+        scrolling: Number,
+    }
 }
 </script>
 
@@ -59,7 +63,9 @@ export default {
 
 header {
     background-color: black;
-    position: fixed;
+    position: relative;
+    transition: all 0.3s ease;
+    height: 160px;
     .header {
         height: 70px;
         display: flex;
@@ -193,6 +199,26 @@ header {
                     position: relative;
                     top: 3px;
                 }
+            }
+        }
+    }
+}
+header.active {
+    background-color: white;
+    position: fixed;
+    height: auto;
+    .header {
+        .header-logo {
+            img {
+                filter: none;
+            }
+        }
+        .header-menu {
+            display: none;
+        }
+        .header-button {
+            a {
+                color: $black-color;
             }
         }
     }

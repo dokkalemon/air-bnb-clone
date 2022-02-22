@@ -1,9 +1,7 @@
 <template>
   <div class="app">
-      <Header />
-      <Booking />
- 
-      
+      <Header :scrolling="scrollPosition"/>
+      <Booking :scrolling="scrollPosition"/>
 
 
 
@@ -15,16 +13,31 @@ import Header from '@/components/Header';
 import Booking from '@/components/Booking';
 
 
-
-
 export default {
+  
   name: 'App',
   components: {
       Header,
       Booking,
+  },
 
-
+  data() {
+    return {
+      scrollPosition: 0,
+    }
+  },
+  
+  methods: {
+    updateScroll() {
+      this.scrollPosition = window.scrollY;
+    }
+  },
+  
+  mounted() {
+    window.addEventListener('scroll', this.updateScroll);
   }
+
+
 }
 </script>
 
