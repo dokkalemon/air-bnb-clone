@@ -3,6 +3,8 @@
       <Header :scrolling="scrollPosition"/>
       <Booking :scrolling="scrollPosition"/>
 
+      <Jumbotron :scrolling="scrollPosition"/>
+
 
 
   </div>
@@ -11,6 +13,7 @@
 <script>
 import Header from '@/components/Header';
 import Booking from '@/components/Booking';
+import Jumbotron from '@/components/Jumbotron';
 
 
 export default {
@@ -19,6 +22,7 @@ export default {
   components: {
       Header,
       Booking,
+      Jumbotron
   },
 
   data() {

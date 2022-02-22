@@ -83,7 +83,7 @@ export default {
 
 
 .booking {
-    
+    z-index: 9999;
     position: absolute;
     transition: all 0.3s ease;
     top: 70px;
