@@ -169,6 +169,7 @@ header {
             border-radius: 100px;
             cursor: pointer;
             margin-left: 3px;
+            border: 1px solid rgb(199, 199, 199);
             .burger {
                 height: 20px;
                 width: 15px;
@@ -221,6 +222,7 @@ header.active {
             display: none;
         }
         .header-button {
+            flex-grow: 1;
             a {
                 color: $black-color;
             }
