@@ -67,6 +67,7 @@ header {
     transition: all 0.3s ease;
     height: 160px;
     z-index: 9999;
+    box-shadow: 0px 0px 0px black;
     .header {
         height: 70px;
         display: flex;
@@ -213,6 +214,7 @@ header.active {
     background-color: white;
     position: fixed;
     height: auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.120);
     .header {
         .header-logo {
             img {
