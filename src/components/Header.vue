@@ -1,5 +1,5 @@
 <template>
-    <header class="full-width" :class="{active: scrolling > 5}">
+    <header class="full-width" :class="{active: scrolling > 20}">
         <div class="header container px-20">
             <div class="header-logo">
                 <img src="@/assets/Logo.svg" alt="">

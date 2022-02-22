@@ -1,5 +1,5 @@
 <template>
-    <section class="booking full-width" :class="{active: scrolling > 5}">
+    <section class="booking full-width" :class="{active: scrolling > 20}">
         <div class="booking-container container px-20">
             <div class="booking-input">
 
@@ -7,26 +7,26 @@
                 <Place :openPlace="openPlaceProp"/>
 
         
-                <button class="input-cont place" @click="openPlaceFunction" @blur="(openPlaceProp = false, openSearch = false)" v-show="scrolling < 5">
+                <button class="input-cont place" @click="openPlaceFunction" @blur="(openPlaceProp = false, openSearch = false)" v-show="scrolling < 20">
                     <span>Dove</span>
                     <p>Dove vuoi andare?</p>
                 </button>
-                <div class="line" v-show="scrolling < 5"></div>
-                <div class="input-cont guests" v-show="scrolling < 5">
+                <div class="line" v-show="scrolling < 20"></div>
+                <div class="input-cont guests" v-show="scrolling < 20">
                     <span>Check-in</span>
                     <p>Aggiungi date</p>
                 </div>
-                <div class="line" v-show="scrolling < 5"></div>
-                <div class="input-cont guests" v-show="scrolling < 5">
+                <div class="line" v-show="scrolling < 20"></div>
+                <div class="input-cont guests" v-show="scrolling < 20">
                     <span>Check-out</span>
                     <p>Aggiungi date</p>
                 </div>
-                <div class="line" v-show="scrolling < 5"></div>
-                <div class="input-cont guests" v-show="scrolling < 5">
+                <div class="line" v-show="scrolling < 20"></div>
+                <div class="input-cont guests" v-show="scrolling < 20">
                     <span>Ospiti</span>
                     <p>Aggiungi Ospiti</p>
                 </div>
-                <div class="scroll-controll" v-show="scrolling > 5" >
+                <div class="scroll-controll" v-show="scrolling > 20" >
                     <span>Inizia la ricerca</span>
                 </div>
                 <div class="button" :class="{active: openSearch}">
@@ -100,7 +100,8 @@ export default {
             border-radius: 100px;
             display: flex;
             align-items: center;
-            border: 1px solid red;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.212);
+            border: 1px solid rgb(199, 199, 199);
             transition: all 0.3s ease;
             .input-cont {
                 height: 100%;
@@ -181,12 +182,16 @@ export default {
     position: fixed;
     top: 0px;
     .booking-container {
+        height: 70px;
         .booking-input {
             height: 48px;
             width: 300px;
             .button {
-                height: 75%;
-                width: 35px;
+                height: 65%;
+                width: 30px;
+                i {
+                    font-size: 13px;
+                }
             }
         }
     }
