@@ -74,7 +74,7 @@ header {
         .header-logo {
             width: 15%;
             height: 35px;
-            flex-grow: 1;
+
             img {
                 height: 100%;
                 filter: brightness(500%)
@@ -82,9 +82,13 @@ header {
         } 
         .header-menu {
             height: 100%;
+
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
             ul {
                 height: 100%;
-                width: 100%;
+                width: 30%;
                 display: flex;
                 list-style: none;
                 align-items: center;
@@ -139,8 +143,8 @@ header {
             
         }
         .header-button {
-            height: 10%;
-            flex-grow: 1;
+            height: 100%;
+            flex-grow: 0;
             display: flex;
             justify-content: flex-end;
             align-items: center;
