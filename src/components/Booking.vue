@@ -103,6 +103,7 @@ export default {
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.212);
             border: 1px solid rgb(199, 199, 199);
             transition: all 0.3s ease;
+            cursor: pointer;
             .input-cont {
                 height: 100%;
                 width:23.3333%;
