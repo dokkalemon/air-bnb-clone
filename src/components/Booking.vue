@@ -1,32 +1,33 @@
 <template>
-    <section class="booking full-width" :class="{active: scrolling > 20}">
+    <section class="booking full-width" :class="{smart: smartClass}">
         <div class="booking-container container px-20">
             <div class="booking-input">
 
+                    
+                    <Place :openPlace="openPlaceProp"/>
 
-                <Place :openPlace="openPlaceProp"/>
 
-        
-                <button class="input-cont place" @click="openPlaceFunction" @blur="(openPlaceProp = false, openSearch = false)" v-show="scrolling < 20">
+
+                <button class="input-cont place" @click="openPlaceFunction" @blur="(openPlaceProp = false, openSearch = false)" v-show="smartClass === false">
                     <span>Dove</span>
                     <p>Dove vuoi andare?</p>
                 </button>
-                <div class="line" v-show="scrolling < 20"></div>
-                <div class="input-cont guests" v-show="scrolling < 20">
+                <div class="line" v-show="smartClass === false"></div>
+                <div class="input-cont guests" v-show="smartClass === false">
                     <span>Check-in</span>
                     <p>Aggiungi date</p>
                 </div>
-                <div class="line" v-show="scrolling < 20"></div>
-                <div class="input-cont guests" v-show="scrolling < 20">
+                <div class="line" v-show="smartClass === false"></div>
+                <div class="input-cont guests" v-show="smartClass === false">
                     <span>Check-out</span>
                     <p>Aggiungi date</p>
                 </div>
-                <div class="line" v-show="scrolling < 20"></div>
-                <div class="input-cont guests" v-show="scrolling < 20">
+                <div class="line" v-show="smartClass === false"></div>
+                <div class="input-cont guests" v-show="smartClass === false">
                     <span>Ospiti</span>
                     <p>Aggiungi Ospiti</p>
                 </div>
-                <div class="scroll-controll" v-show="scrolling > 20" >
+                <div class="scroll-controll" v-show="smartClass === true" @click="$emit('removeSmartClass')" >
                     <span>Inizia la ricerca</span>
                 </div>
                 <div class="button" :class="{active: openSearch}">
@@ -43,17 +44,19 @@
 <script>
 /* import Datepicker from 'vue3-date-time-picker';
 import 'vue3-date-time-picker/dist/main.css' */
-import Place from '@/components/Place';
+import Place from '@/components/Place'
 
 
 export default {
     name: 'TheBooking',
     components: {
         /* Datepicker, */
-        Place,
+        Place
     },
     props: {
         scrolling: Number,
+        activeState: Boolean,
+        smartClass: Boolean,
     },
     data() {
         return {
@@ -84,7 +87,7 @@ export default {
 
 .booking {
     z-index: 9999;
-    position: absolute;
+    position: fixed;
     transition: all 0.3s ease;
     top: 70px;
     transition: top 0.3s ease;
@@ -178,7 +181,7 @@ export default {
         }
     }
 }
-.booking.active {
+.booking.smart {
     background-color: transparent;
     position: fixed;
     top: 0px;

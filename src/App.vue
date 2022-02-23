@@ -1,7 +1,7 @@
 <template>
   <div class="app">
-      <Header :scrolling="scrollPosition"/>
-      <Booking :scrolling="scrollPosition"/>
+      <Header :scrolling="scrollPosition" :smartClass="smartHeaderClass"/>
+      <Booking :scrolling="scrollPosition" :smartClass="smartClass" @removeSmartClass="removeSmart"/>
 
       <Jumbotron :scrolling="scrollPosition"/>
 
@@ -28,12 +28,26 @@ export default {
   data() {
     return {
       scrollPosition: 0,
+      smartClass: false,
+      smartHeaderClass: false,
     }
   },
   
   methods: {
     updateScroll() {
+      if (this.scrollPosition > 20) {
+        this.smartClass = true
+        this.smartHeaderClass = false
+      } else if (this.scrollPosition <= 20 || this.scrollPosition === 0) {
+        this.smartClass = false
+      }
       this.scrollPosition = window.scrollY;
+    },
+
+    removeSmart() {
+      this.smartClass = false
+      console.log(this.smartClass);
+      this.smartHeaderClass = true
     }
   },
   
@@ -46,6 +60,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import './styles/global.scss'
+@import './styles/global.scss';
 
 </style>

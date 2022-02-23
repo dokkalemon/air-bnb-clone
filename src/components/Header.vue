@@ -1,5 +1,5 @@
 <template>
-    <header class="full-width" :class="{active: scrolling > 20}">
+    <header class="full-width" :class="{light: scrolling > 20, big_header: smartClass}">
         <div class="header container px-20">
             <div class="header-logo">
                 <img src="@/assets/Logo.svg" alt="">
@@ -54,6 +54,7 @@ export default {
 
     props: {
         scrolling: Number,
+        smartClass: Boolean,
     }
 }
 </script>
@@ -63,11 +64,11 @@ export default {
 
 header {
     background-color: black;
-    position: relative;
-    transition: all 0.3s ease;
+    position: fixed;
     height: 160px;
     z-index: 9999;
     box-shadow: 0px 0px 0px black;
+    transition: all 0.3s ease;
     .header {
         height: 70px;
         display: flex;
@@ -84,7 +85,7 @@ header {
         } 
         .header-menu {
             height: 100%;
-
+            
             flex-grow: 1;
             display: flex;
             justify-content: center;
@@ -210,11 +211,13 @@ header {
         }
     }
 }
-header.active {
-    background-color: white;
+
+header.light {
+    background-color: #fff;
     position: fixed;
     height: auto;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.120);
+    transition: all 0.3s ease;
     .header {
         .header-logo {
             img {
@@ -228,6 +231,29 @@ header.active {
             flex-grow: 1;
             a {
                 color: $black-color;
+            }
+        }
+    }
+}
+
+header.big_header {
+    height: 160px;
+    transition: all 0.3s ease;
+    .header {
+        .header-menu {
+            display: flex;
+            width: 65%;
+            ul {
+                li {
+                    .menu-item {
+                        a {
+                            color: black;
+                        }
+                        .menu-item-line {
+                            background-color: black
+                        }
+                    }
+                }
             }
         }
     }
